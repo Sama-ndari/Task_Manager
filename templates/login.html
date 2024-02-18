@@ -1,0 +1,19 @@
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "header.html" %}
+    <main class="form-signin w-100 m-auto">
+        <h3>Please sign-in</h3>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li style="color:red">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        {% endwith %}
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        <br>
+        <a href="{{ url_for('register')}}" class="btn border-white btn-sm bg-gray btn-dark">Register in</a>
+    </main>
+  {% include "footer.html" %}

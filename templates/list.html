@@ -1,0 +1,27 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "header.html" %}
+    <div class="container">
+        <h1 class="mt-3">{{list_.name}}</h1>
+        <ul class="list-group mt-3">
+            {% for task in list_.tasks %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input type="checkbox" {% if task.completed %}checked{% endif %} disabled>
+                        {{ task.title }}
+                    </div>
+                    <div>
+                        <a href="{{ url_for('complete_task', id_task=task.id) }}" class="btn btn-primary me-2">Complete</a>
+                        <a href="{{ url_for('delete_task', id_task=task.id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ url_for('edit_task', id_task=task.id) }}" class="btn btn-primary">Edit</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if edit %}
+         <h3 class="mt-4">Edit Task {{ task.title }}</h3>
+        {% else %}
+         <h3 class="mt-4">Create New Task for {{list_.name}}</h3>
+        {% endif %}
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </div>
+{% include "footer.html" %}

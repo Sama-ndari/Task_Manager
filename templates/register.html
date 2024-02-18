@@ -1,0 +1,21 @@
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "header.html" %}
+    <main class="form-signin w-100 m-auto">
+        {% if not edit %}
+            <h3>We are excited to see you on board</h3>
+        {% else %}
+            <h3>Edit User</h3>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li style="color:red">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        {% endwith %}
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </main>
+  {% include "footer.html" %}
