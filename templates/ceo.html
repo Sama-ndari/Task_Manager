@@ -5,32 +5,47 @@
             {% for user in users %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        User {{ user.id }}. {{ user.name }} / {{ user.email }}
-                    </div>
-                    <div>
-                        <a href="{{ url_for('reset_user', user_id=user.id) }}" class="btn btn-primary me-2">Reset</a>
-                        <a href="{{ url_for('delete_user', user_id=user.id) }}" class="btn btn-danger">Delete</a>
-                        <a href="{{ url_for('edit_user', user_id=user.id) }}" class="btn btn-primary">Edit</a>
+                        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                          <div class="container-fluid">
+                              <div>User {{ user.id }}. {{ user.name }} / {{ user.email }}</div>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                  <a href="{{ url_for('reset_user', user_id=user.id) }}" class="nav-link">Reset</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a href="{{ url_for('delete_user', user_id=user.id) }}" class="nav-link">Delete</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a href="{{ url_for('edit_user', user_id=user.id) }}" class="nav-link">Edit</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </nav>
                     </div>
                     {% for list in user.lists %}
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
+                            <div class="navbar-brand">
                                 List {{ list.id }}. {{ list.name }} / {{ list.date }}
                             </div>
                             <div>
-                                <a href="{{ url_for('show_list', id_list=list.id) }}" class="btn btn-primary me-2">See all tasks</a>
-                                <a href="{{ url_for('delete_list', id_list=list.id) }}" class="btn btn-danger">Delete</a>
-                                <a href="{{ url_for('edit_list', id_list=list.id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ url_for('show_list', id_list=list.id) }}" class="btn btn-sm btn-primary me-2">See all tasks</a>
+                                <a href="{{ url_for('delete_list', id_list=list.id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ url_for('edit_list', id_list=list.id) }}" class="btn btn-sm btn-primary">Edit</a>
                             </div>
                             {% for task in list.tasks %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <div>
+                                    <div class="navbar-brand">
                                         Task {{ task.id }}. {{ task.title }} / {{ task.description }} / {{ task.completed }}
                                     </div>
                                     <div>
-                                        <a href="{{ url_for('complete_task', id_task=task.id) }}" class="btn btn-primary me-2">Complete</a>
-                                        <a href="{{ url_for('delete_task', id_task=task.id) }}" class="btn btn-danger">Delete</a>
-                                        <a href="{{ url_for('edit_task', id_task=task.id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ url_for('complete_task', id_task=task.id) }}" class="btn btn-sm btn-primary me-2">Complete</a>
+                                        <a href="{{ url_for('delete_task', id_task=task.id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{ url_for('edit_task', id_task=task.id) }}" class="btn btn-sm btn-primary">Edit</a>
                                     </div>
                                 </li>
                             {% endfor %}

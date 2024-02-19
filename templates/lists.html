@@ -5,12 +5,27 @@
             {% for list in lists %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        {{ list.id }}. {{ list.name }}
-                    </div>
-                    <div>
-                        <a href="{{ url_for('show_list', id_list=list.id) }}" class="btn btn-primary me-2">See all tasks</a>
-                        <a href="{{ url_for('delete_list', id_list=list.id) }}" class="btn btn-danger">Delete</a>
-                        <a href="{{ url_for('edit_list', id_list=list.id) }}" class="btn btn-primary">Edit</a>
+                        <nav class="navbar navbar-expand-sm bg-transparent">
+                          <div class="container-fluid">
+                              <div class="navbar-brand">{{ list.id }}. {{ list.name }}</div>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a href="{{ url_for('show_list', id_list=list.id) }}" class="nav-link">See all tasks</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a href="{{ url_for('delete_list', id_list=list.id) }}" class="nav-link">Delete</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url_for('edit_list', id_list=list.id) }}" class="nav-link">Edit</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </nav>
                     </div>
                 </li>
             {% endfor %}

@@ -5,12 +5,12 @@ from wtforms.validators import DataRequired, URL
 
 
 class RegisterForm(FlaskForm):
+    name = StringField(label="", validators=[DataRequired()],
+                       render_kw={"placeholder": "Enter your Name here"})
     email = StringField(label="", validators=[DataRequired()],
                         render_kw={"placeholder": "Enter your Email here"})
     password = PasswordField(label="", validators=[DataRequired()],
                              render_kw={"placeholder": "Enter your Password here"})
-    name = StringField(label="", validators=[DataRequired()],
-                       render_kw={"placeholder": "Enter your Name here"})
     submit = SubmitField("REGISTER ME UP")
 
 
@@ -18,7 +18,7 @@ class LoginForm(FlaskForm):
     email = StringField(label="", validators=[DataRequired()],
                         render_kw={"placeholder": "Enter your Email here"})
     password = PasswordField(label="", validators=[DataRequired()],
-                             render_kw={"placeholder": "Enter your Password here"})
+                             render_kw={"placeholder": "Enter your Password here",  "class": "password-field"})
     remember = BooleanField('Remember Me')
     submit = SubmitField("SIGN ME UP")
 

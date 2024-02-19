@@ -6,13 +6,30 @@
             {% for task in list_.tasks %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <input type="checkbox" {% if task.completed %}checked{% endif %} disabled>
-                        {{ task.title }}
-                    </div>
-                    <div>
-                        <a href="{{ url_for('complete_task', id_task=task.id) }}" class="btn btn-primary me-2">Complete</a>
-                        <a href="{{ url_for('delete_task', id_task=task.id) }}" class="btn btn-danger">Delete</a>
-                        <a href="{{ url_for('edit_task', id_task=task.id) }}" class="btn btn-primary">Edit</a>
+                        <nav class="navbar navbar-expand-sm bg-transparent">
+                          <div class="container-fluid">
+                              <div class="navbar-brand">
+                                <input type="checkbox" {% if task.completed %}checked{% endif %} disabled>
+                                {{ task.title }}
+                              </div>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a href="{{ url_for('complete_task', id_task=task.id) }}" class="nav-link">Complete</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a href="{{ url_for('delete_task', id_task=task.id) }}" class="nav-link">Delete</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url_for('edit_task', id_task=task.id) }}" class="nav-link">Edit</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </nav>
                     </div>
                 </li>
             {% endfor %}
